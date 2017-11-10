@@ -64,7 +64,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
     api_key: ENV['SMTP_API_KEY'],
-    domain: ENV['SMTP_DOMAIN'],
+    domain: ENV['SMTP_DOMAIN']
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
