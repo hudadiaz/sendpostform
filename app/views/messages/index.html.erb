@@ -1,0 +1,28 @@
+<main class="my-3">
+  <p>
+    <%= link_to 'Mailbox', current_mailbox_path, class: 'btn btn-info' %>
+  </p>
+
+  <h2><%= title 'Messages' %></h2>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Subject</th>
+        <th>Received</th>
+        <th colspan="2" style="white-space: break-word; width: 1%;"></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @messages.each do |message| %>
+        <tr>
+          <td><%= message.subject %></td>
+          <td><%= message.created_at.strftime('%e %b %y') %></td>
+          <td><%= link_to 'Show', mailbox_message_path(mailbox_id: :current, id: message) %></td>
+          <td><%= link_to 'Remove', mailbox_message_path(mailbox_id: :current, id: message), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</main>

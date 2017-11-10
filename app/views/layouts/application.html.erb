@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= display_meta_tags %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'layouts/partials/navbar' %>
+    <div class="container">
+      <% if notice.present? %>
+        <div class="alert alert-secondary mt-3" role="alert">
+          <%= notice %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+<h1>Welcome to <%= t('app.title') %></h1>
+<p>You have registered for a Mailbox at Post Mail.</p>
+<p>Use the following link to confirm your account:</p>
+<p><%= link_to confirmation_url(token: @mailbox.confirmation_token), confirmation_url(token: @mailbox.confirmation_token) %></p>
+<p>Ignore this email if you did not perform this action.</p>

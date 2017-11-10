@@ -1,0 +1,7 @@
+<%= form_for([mailbox, whitelist]) do |f| -%>
+  <div class="form-group">
+    <%= f.label :hostname, Whitelist.human_attribute_name(:hostname), class: 'sr-only' %>
+    <%= f.text_field :hostname, placeholder: Whitelist.human_attribute_name(:hostname), class: 'form-control', required: true, aria: { describedBy: 'whitelistHelp' } %>
+    <small id="whitelistHelp" class="form-text text-muted"><span class="text-dark">required</span> URL of website where you want to use the form</small>
+  </div>
+<% end -%>

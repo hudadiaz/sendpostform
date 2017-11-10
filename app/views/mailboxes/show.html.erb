@@ -1,0 +1,53 @@
+<main class="my-3">
+  <% unless @mailbox.confirmed? %>
+    <div class="alert alert-warning mt-3" role="alert">
+      Confirm your email to receive email notifications.
+      <%= link_to 'Resend confirmation email', confirmation_resend_path, method: :post %>
+    </div>
+  <% end %>
+  <%= yield %>
+
+  <p>
+    <%= link_to 'Messages', mailbox_messages_path(mailbox_id: :current), class: 'btn btn-primary' %>
+    <%= link_to 'Whitelists', mailbox_whitelists_path(mailbox_id: :current), class: 'btn btn-primary' %>
+  </p>
+
+  <h2><%= title 'Mailbox' %></h2>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th><%= Mailbox.human_attribute_name :email %></th>
+        <td><code><%= @mailbox.email %></code></td>
+        <td style="width: 1%"></td>
+      </tr>
+      <tr>
+        <th><%= Mailbox.human_attribute_name :api_key %></th>
+        <td><code><%= @mailbox.api_key %></code></td>
+        <td><%= link_to 'reset', reset_api_key_path, method: :post, data: { confirm: "Any forms using this #{Mailbox.human_attribute_name(:api_key)} will be invalid. Continue reset #{Mailbox.human_attribute_name(:api_key)}?" }, class: 'text-warning' %></td>
+      </tr>
+      <tr>
+        <th><%= Mailbox.human_attribute_name :access_token %></th>
+        <td><code><%= @mailbox.access_token %></code></td>
+        <td><%= link_to 'reset', reset_access_token_path, method: :post, data: { confirm: "You won't be able to use this #{Mailbox.human_attribute_name(:api_key)} to login anymore. Continue reset #{Mailbox.human_attribute_name(:api_key)}?" }, class: 'text-warning' %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="mt-5">
+    <p>
+      <a class="btn btn-light btn-sm" data-toggle="collapse" href="#deleteMailbox" aria-expanded="false" aria-controls="deleteMailbox">
+        Close Mailbox
+      </a>
+    </p>
+    <div class="collapse" id="deleteMailbox">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Close Mailbox</h4>
+          <p class="card-text">This will render all forms using your <%= Mailbox.human_attribute_name :api_key %> unusable. This action is cannot be reversed!</p>
+          <%= link_to 'Delete Mailbox', current_mailbox_path, method: :delete, data: { confirm: 'This action cannot be reversed! Are you sure?' }, class: 'btn btn-danger' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,34 @@
+<main class="my-3">
+  <p>
+    <%= link_to 'Mailbox', current_mailbox_path, class: 'btn btn-info' %>
+  </p>
+
+  <h2>Hostname whitelists</h2>
+
+  <p>Limit websites that can use your Post Mail link.</p>
+
+  <p>To accept submissions from anywhere, add <code>*</code>.</p>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Hostnames</th>
+        <th style="white-space: break-word; width: 1%;"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @whitelists.each do |whitelist| %>
+        <tr>
+          <td><%= whitelist.hostname %></td>
+          <td><%= link_to 'Remove', mailbox_whitelist_path(whitelist, mailbox_id: :current), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-danger' %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan="2">
+          <%= render 'form', mailbox: @mailbox, whitelist: @whitelist %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</main>

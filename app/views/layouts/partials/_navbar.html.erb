@@ -1,0 +1,13 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <%= link_to t('app.title_short'), root_path, class: "navbar-brand" %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="nav navbar-nav ml-auto">
+      <%= active_link_to 'messages', mailbox_messages_path(mailbox_id: :current), class: 'nav-link', wrap_tag: :li, wrap_class: 'nav-item' if session[:access_token] %>
+      <%= active_link_to 'mailbox', mailbox_path, class: 'nav-link', wrap_tag: :li, wrap_class: 'nav-item' %>
+      <%= session_link %>
+    </ul>
+  </div>
+</nav>

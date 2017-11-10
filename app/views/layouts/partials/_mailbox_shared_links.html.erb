@@ -1,0 +1,5 @@
+<div class="mt-4">
+  <%= link_to 'New mailbox', new_mailbox_path, class: 'd-block' unless current_page?(new_mailbox_path) %>
+  <%= link_to 'Access mailbox', session_login_path, class: 'd-block' unless current_page?(session_login_path) %>
+  <%= link_to 'Forgot access token?', reset_path, class: 'd-block' unless current_page?(reset_path) %>
+</div>

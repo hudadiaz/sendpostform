@@ -1,0 +1,27 @@
+<main class="my-3">
+  <%= link_to 'Mailbox', current_mailbox_path, class: 'btn btn-info' %>
+  <%= link_to 'Mails', mailbox_messages_path(mailbox_id: :current), class: 'btn btn-secondary' %>
+  
+  <div class="mt-3">
+    <h2><%= @message.subject || 'Message' %></h2>
+    <p><%= @message.created_at.strftime('%I:%M %d %B %Y') %></p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="width: 1%">Item</th>
+          <th>Input</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% (eval @message.content).each do |item| %>
+          <tr>
+            <td><code><%= item.first %></code></td>
+            <td><%= item.second %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</main>

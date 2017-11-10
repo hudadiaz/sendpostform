@@ -1,0 +1,64 @@
+<main class="my-3">
+  <h2><%= title t('app.title') %></h2>
+  
+  <p>Set your form <code>action</code> to <code><%= messages_url %></code>. Then set the following parameters/input to your form:</p>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Param</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>api_key</code></td>
+        <td>required</td>
+        <td>Your mailbox identification. You can <%= link_to 'find your API Key here', mailbox_path, target: '_blank' %>.</td>
+      </tr>
+      <tr>
+        <td><code>redirect_to</code></td>
+        <td class="text-secondary">optional</td>
+        <td>Redirect URL after form submission. Default to referer.</td>
+      </tr>
+      <tr>
+        <td><code>subject</code></td>
+        <td class="text-secondary">optional</td>
+        <td>Email notification subject.</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h2>Demo</h2>
+  <form action="<%= messages_url %>" method="post">
+    <div class="form-group">
+      <label for="api_key" class="sr-only">api_key (required)</label>
+      <input type="text" name="api_key" placeholder="API Key" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="redirect_to" class="sr-only">redirect_to (url, leave blank to redirect back to this page)</label>
+      <input type="text" name="redirect_to" placeholder="Redirect URL" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="subject" class="sr-only">subject (optional)</label>
+      <input type="text" name="subject" placeholder="Subject" class="form-control" value="<%= t('email.subject') %>">
+    </div>
+    <div class="form-group">
+      <label for="email" class="sr-only">Email</label>
+      <input type="email" name="email" placeholder="Email" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="name" class="sr-only">Name</label>
+      <input type="text" name="name" placeholder="Name" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="message" class="sr-only">Message</label>
+      <textarea name="message" id="message" rows="5" placeholder="Message" class="form-control"></textarea>
+    </div>
+
+    <div class="actions">
+      <input type="submit" value="Test Form" class="btn btn-warning">
+    </div>
+  </form>
+</main>

@@ -1,0 +1,19 @@
+<h1>You received a message</h1>
+<p><strong>Received at:</strong>: <%= @message.created_at.strftime('%I:%M %d %B %Y') %></p>
+<p>The details are as follows:</p>
+<table>
+  <thead>
+    <tr>
+      <th style="width: 1%">Item</th>
+      <th style="text-align: left">Input</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% (eval @message.content).each do |item| %>
+      <tr>
+        <td><code><%= item.first %></code></td>
+        <td><%= item.second %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

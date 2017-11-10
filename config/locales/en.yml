@@ -1,0 +1,16 @@
+en:
+  app:
+    name: Send Post Form
+    title: Send Post Form
+    title_short: Post Form
+    description: Lets you put forms on your websites and email you the responses
+  email:
+    subject: You received a message at Post Mail
+  activerecord:
+    attributes:
+      mailbox:
+        email: Email address
+        api_key: API Key
+        access_token: Access Token
+      whitelist:
+        hostname: Hostname or URL

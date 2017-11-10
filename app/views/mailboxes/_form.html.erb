@@ -1,0 +1,22 @@
+<%= form_for(mailbox, html: { class: 'mt-4' }) do |f| %>
+  <% if mailbox.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mailbox.errors.count, "error") %> prohibited this mailbox from being saved:</h2>
+
+      <ul>
+      <% mailbox.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :email, Mailbox.human_attribute_name(:email), class: 'sr-only' %>
+    <%= f.email_field :email, placeholder: Mailbox.human_attribute_name(:email), class: 'form-control', autocomplete: :off, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

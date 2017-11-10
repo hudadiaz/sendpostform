@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: first@email.com
+  access_token: Secret
+  api_key: Secret
+
+two:
+  email: second@email.com
+  access_token: Secret
+  api_key: Secret
