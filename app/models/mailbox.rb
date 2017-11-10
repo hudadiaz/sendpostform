@@ -10,7 +10,7 @@ class Mailbox < ApplicationRecord
   before_create :generate_access_token
   before_create :generate_confirmation_token
   after_create :allows_sendpostform
-  after_commit :send_confirmation_email, unless: :confirmed?
+  after_create :send_confirmation_email, unless: :confirmed?
 
   def allows? referrer
     whitelists = self.whitelists.select(:hostname).map(&:hostname)
