@@ -9,6 +9,7 @@ services:
       - "3070:3000"
     environment:
       - RAILS_ENV=production
+      - RAILS_SERVE_STATIC_FILES=true
       - HOSTNAME=sendpostform.zaidhuda.com
       - SECRET_KEY_BASE=secret
       - SMTP_API_KEY=secret
