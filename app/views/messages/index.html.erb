@@ -5,24 +5,32 @@
 
   <h2><%= title 'Messages' %></h2>
   
-  <table class="table">
+  <table class="table table-responsive">
     <thead>
       <tr>
         <th>Subject</th>
         <th>Received</th>
-        <th colspan="2" style="white-space: break-word; width: 1%;"></th>
+        <th style="white-space: break-word; width: 1%;"></th>
       </tr>
     </thead>
   
     <tbody>
       <% @messages.each do |message| %>
         <tr>
-          <td><%= message.subject %></td>
-          <td><%= message.created_at.strftime('%e %b %y') %></td>
-          <td><%= link_to 'Show', mailbox_message_path(mailbox_id: :current, id: message) %></td>
-          <td><%= link_to 'Remove', mailbox_message_path(mailbox_id: :current, id: message), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-danger' %></td>
+          <td class="text-nowrap"><%= link_to message.subject, mailbox_message_path(mailbox_id: :current, id: message) %></td>
+          <td class="text-nowrap"><%= message.created_at.strftime('%e %b %y') %></td>
+          <td>
+            <%= link_to mailbox_message_path(mailbox_id: :current, id: message), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-danger' do %>
+              <span aria-hidden="true">&times;</span>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <% if @messages.present? %>
+    <p>
+      <%= link_to "Delete all messages (#{@messages.size})", delete_all_mailbox_messages_path(mailbox_id: :current), class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Delete all messages? Are you sure?' } %>
+    </p>
+  <% end %>
 </main>

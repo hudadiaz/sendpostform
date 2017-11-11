@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   root 'demo#index'
   get 'mailboxes/current', to: 'mailboxes#show', as: :current_mailbox
   resources :mailboxes, only: [:new, :show, :create, :destroy] do
-    resources :messages, only: [:index, :show, :destroy]
+    resources :messages, only: [:index, :show, :destroy] do
+      collection do
+        delete :delete_all, to: 'messages#delete_all'
+      end
+    end
     resources :whitelists, only: [:index, :create, :destroy]
   end
   resources :messages, only: [:create]

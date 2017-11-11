@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
-  before_action :set_mailbox, only: [:index, :show, :destroy]
+  before_action :set_mailbox, except: [:create]
   before_action :set_message, only: [:show, :destroy]
 
   def index
@@ -35,7 +35,17 @@ class MessagesController < ApplicationController
   def destroy
     @message.destroy
     respond_to do |format|
-      format.html { redirect_to mailbox_messages_url(@mailbox), notice: 'Message was successfully deleted.' }
+      format.html { redirect_to mailbox_messages_url(mailbox_id: :current), notice: 'Message was successfully deleted.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def delete_all
+    @messages = @mailbox.messages
+    count = @messages.size
+    @messages.destroy_all
+    respond_to do |format|
+      format.html { redirect_to mailbox_messages_url(mailbox_id: :current), notice: "#{count} messages was successfully deleted." }
       format.json { head :no_content }
     end
   end

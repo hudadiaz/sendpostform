@@ -1,5 +1,19 @@
-<h1>Welcome to <%= t('app.title') %></h1>
 <p>You have registered for a Mailbox at Post Mail.</p>
+<p>
+  <strong><%= Mailbox.human_attribute_name :email %></strong>
+  <br>
+  <code><%= @mailbox.email %></code>
+</p>
+<p>
+  <strong><%= Mailbox.human_attribute_name :api_key %></strong>
+  <br>
+  <code><%= @mailbox.api_key %></code>
+</p>
+<p>
+  <strong><%= Mailbox.human_attribute_name :access_token %></strong>
+  <br>
+  <code><%= @mailbox.access_token %></code>
+</p>
 <p>Use the following link to confirm your account:</p>
 <p><%= link_to confirmation_url(token: @mailbox.confirmation_token), confirmation_url(token: @mailbox.confirmation_token) %></p>
 <p>Ignore this email if you did not perform this action.</p>

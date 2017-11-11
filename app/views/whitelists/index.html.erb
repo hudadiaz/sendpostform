@@ -3,13 +3,13 @@
     <%= link_to 'Mailbox', current_mailbox_path, class: 'btn btn-info' %>
   </p>
 
-  <h2>Hostname whitelists</h2>
+  <h2>Hostnames whitelist</h2>
 
   <p>Limit websites that can use your Post Mail link.</p>
 
   <p>To accept submissions from anywhere, add <code>*</code>.</p>
 
-  <table class="table">
+  <table class="table table-responsive">
     <thead>
       <tr>
         <th>Hostnames</th>
@@ -21,14 +21,14 @@
       <% @whitelists.each do |whitelist| %>
         <tr>
           <td><%= whitelist.hostname %></td>
-          <td><%= link_to 'Remove', mailbox_whitelist_path(whitelist, mailbox_id: :current), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-danger' %></td>
+          <td>
+            <%= link_to mailbox_whitelist_path(whitelist, mailbox_id: :current), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-danger' do %>
+              <span aria-hidden="true">&times;</span>
+            <% end %>    
+          </td>
         </tr>
       <% end %>
-      <tr>
-        <td colspan="2">
-          <%= render 'form', mailbox: @mailbox, whitelist: @whitelist %>
-        </td>
-      </tr>
     </tbody>
   </table>
+  <%= render 'form', mailbox: @mailbox, whitelist: @whitelist %>
 </main>
