@@ -25,21 +25,21 @@
     <input type="text" value="<%= @mailbox.api_key %>" onclick="this.select();" class="form-control" readonly>
     <%= link_to 'Reset', reset_api_key_path, method: :post, class: 'btn btn-warning btn-sm my-1', data: { confirm: "Any forms using this #{Mailbox.human_attribute_name(:api_key)} will be invalid. Continue reset #{Mailbox.human_attribute_name(:api_key)}?" } %>
   </p>
-  <p>
-    <strong><%= Mailbox.human_attribute_name :access_token %></strong>
-    <br>
-    <input type="text" value="<%= @mailbox.access_token %>" onclick="this.select();" class="form-control" readonly>
-    <%= link_to 'Reset', reset_access_token_path, method: :post, class: 'btn btn-warning btn-sm my-1', data: { confirm: "Any forms using this #{Mailbox.human_attribute_name(:access_token)} will be invalid. Continue reset #{Mailbox.human_attribute_name(:access_token)}?" } %>
-  </p>
 
   <div class="mt-5">
     <p>
       <a class="btn btn-light btn-sm" data-toggle="collapse" href="#deleteMailbox" aria-expanded="false" aria-controls="deleteMailbox">
-        Close Mailbox
+        Advanced
       </a>
     </p>
     <div class="collapse" id="deleteMailbox">
       <div class="card">
+        <div class="card-body">
+          <p class="card-text">Terminate all other active sessions.</p>
+          <%= link_to 'Reset', reset_access_token_path, method: :post, class: 'btn btn-warning', data: { confirm: "Are you sure?" } %>
+        </div>
+      </div>
+      <div class="card my-2">
         <div class="card-body">
           <h4 class="card-title">Close Mailbox</h4>
           <p class="card-text">This will render all forms using your <%= Mailbox.human_attribute_name :api_key %> unusable. This action is cannot be reversed!</p>

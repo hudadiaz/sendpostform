@@ -5,10 +5,10 @@ class MailboxMailer < ApplicationMailer
     mail(to: @email, subject: "Welcome to #{t('app.title')}")
   end
 
-  def reset_token_email mailbox
+  def magic_token_email mailbox
     @mailbox = mailbox
-    p @mailbox.reset_token
+    p @mailbox.magic_token
     @email = @mailbox.email
-    mail(to: @email, subject: "Reset #{t('app.title')} Access Token")
+    mail(to: @email, subject: "Magic link #{t('app.title')}")
   end
 end

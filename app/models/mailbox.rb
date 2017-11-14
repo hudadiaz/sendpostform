@@ -31,6 +31,10 @@ class Mailbox < ApplicationRecord
     access_token
   end
 
+  def masked_access_token
+    '*' * (access_token.size - 6) + access_token[-6, 6]
+  end
+
   def send_confirmation_email
     MailboxMailer.confirmation_email(self).deliver_later
   end
@@ -46,24 +50,24 @@ class Mailbox < ApplicationRecord
     confirmed_at.present?
   end
 
-  def request_reset_token
-    self.generate_reset_token
+  def request_magic_token
+    self.generate_magic_token
     if self.save
-      MailboxMailer.reset_token_email(self).deliver_later
+      MailboxMailer.magic_token_email(self).deliver_later
     end
   end
 
-  def generate_reset_token
-    while Mailbox.find_by reset_token: (self.reset_token = SecureRandom.urlsafe_base64(64))
+  def generate_magic_token
+    while Mailbox.find_by magic_token: (self.magic_token = SecureRandom.urlsafe_base64(64))
     end
-    self.reset_token_generated_at = Time.now
-    reset_token
+    self.magic_token_generated_at = Time.now
+    magic_token
   end
 
   private
 
   def allows_sendpostform
-    whitelists.create! hostname: ENV['HOSTNAME']
+    whitelists.create! hostname: ENV['HOSTNAME'] || 'localhost'
   end
 
   def generate_confirmation_token

@@ -1,0 +1,4 @@
+<p>Use the following link to log in to your account:</p>
+<p><%= link_to magic_login_url(token: @mailbox.magic_token), magic_login_url(token: @mailbox.magic_token) %></p>
+<p>Usable for 1 hour from <code><%= @mailbox.magic_token_generated_at %></code> or until new magic link is created.</p>
+<p>Ignore this email if you did not perform this action.</p>

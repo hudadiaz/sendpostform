@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20171109185220) do
     t.string   "api_key"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.string   "reset_token"
-    t.datetime "reset_token_generated_at"
+    t.string   "magic_token"
+    t.datetime "magic_token_generated_at"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.index ["access_token"], name: "index_mailboxes_on_access_token"

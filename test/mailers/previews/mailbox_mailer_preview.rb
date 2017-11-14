@@ -4,7 +4,7 @@ class MailboxMailerPreview < ActionMailer::Preview
     MailboxMailer.confirmation_email Mailbox.first
   end
   
-  def reset_token_email
-    MailboxMailer.reset_token_email Mailbox.first
+  def magic_token_email
+    MailboxMailer.magic_token_email Mailbox.first
   end
 end

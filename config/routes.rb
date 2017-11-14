@@ -17,15 +17,16 @@ Rails.application.routes.draw do
   end
 
   scope :session, as: :session do
-    get 'login', to: 'session#new'
-    post '/', to: 'session#create'
     delete '/', to: 'session#destroy'
   end
 
+  scope :magic, as: :magic do
+    get '/', to: 'magic#index'
+    post '/', to: 'magic#create'
+    get 'login', to: 'magic#login'
+  end
+
   scope :reset, as: :reset do
-    get '/', to: 'reset#index'
-    post '/', to: 'reset#create'
-    get 'apply', to: 'reset#apply'
     post 'api_key', to: 'reset#api_key'
     post 'access_token', to: 'reset#access_token'
   end
