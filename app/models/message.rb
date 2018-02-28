@@ -4,10 +4,10 @@ class Message < ApplicationRecord
   validate :content_present
   validates_presence_of :mailbox_id
 
-  after_create :send_message_notification_email,  if: :mailbox_confirmed?
+  after_create :send_message_notification_email, if: :mailbox_confirmed?
 
   def send_message_notification_email
-    MessageMailer.message_notification_email(self).deliver_later
+    MessageMailer.message_notification_email(self)
   end
 
   def mailbox_confirmed?
