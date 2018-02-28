@@ -7,7 +7,7 @@ class Message < ApplicationRecord
   after_create :send_message_notification_email, if: :mailbox_confirmed?
 
   def send_message_notification_email
-    MessageMailer.message_notification_email(self).deliver
+    MessageMailer.message_notification_email(self).deliver_later
   end
 
   def mailbox_confirmed?
