@@ -8,6 +8,7 @@ end
 gem 'rails', '~> 5.0.6'
 gem 'pg'
 gem 'puma', '~> 3.0'
+gem 'sucker_punch'
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
